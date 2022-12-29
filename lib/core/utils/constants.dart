@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
+import 'app_colors.dart';
 import 'app_strings.dart';
 
 class AppConstants {
@@ -20,14 +22,25 @@ class AppConstants {
           TextButton(
             onPressed: () => Navigator.pop(context),
             style: TextButton.styleFrom(
-                foregroundColor: Colors.black, textStyle: const TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold
-                )),
+                foregroundColor: Colors.black,
+                textStyle:
+                    const TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
             child: const Text(AppStrings.ok),
           )
         ],
       ),
+    );
+  }
+
+  static void showToast(
+      {required BuildContext context, required String msg, Color? color,
+      ToastGravity? gravity
+      }) {
+    Fluttertoast.showToast(
+      msg: msg,
+      toastLength: Toast.LENGTH_LONG,
+      backgroundColor: color ?? AppColors.primaryColor,
+      gravity:  gravity?? ToastGravity.BOTTOM
     );
   }
 }
