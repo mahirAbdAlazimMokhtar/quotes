@@ -12,8 +12,11 @@ class QuoteScreen extends StatelessWidget {
       body: Center(
           child: InkWell(
               onTap: () {
-                AppConstants.showErrorDialog(
-                  context: context, msg: 'Hi This For Test');
+                AppConstants.showToast(
+              
+                  msg: 'Hi This For Test',
+                  color: Colors.red,
+                  );
               },
               child: Image.asset(ImageAssets.quoteImg))),
     );
