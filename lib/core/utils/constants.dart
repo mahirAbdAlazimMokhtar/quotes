@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'app_strings.dart';
 
-class Constants {
+class AppConstants {
   static void showErrorDialog(
       {required BuildContext context, required String msg}) {
     showDialog(
