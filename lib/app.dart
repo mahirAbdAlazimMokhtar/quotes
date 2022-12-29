@@ -10,7 +10,7 @@ class QuoteApp extends StatelessWidget {
     return  MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: appTheme(),
-      routes: routes,
+      onGenerateRoute: AppRoutes.onGenerateRoute,
     );
   }
 }
