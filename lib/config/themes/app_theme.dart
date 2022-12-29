@@ -6,5 +6,6 @@ ThemeData appTheme() {
   return ThemeData(
     primaryColor: AppColors.primaryColor,
     hintColor: AppColors.hintColor,
+    scaffoldBackgroundColor: Colors.white,
   );
 }
