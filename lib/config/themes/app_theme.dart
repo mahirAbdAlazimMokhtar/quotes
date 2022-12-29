@@ -9,10 +9,20 @@ ThemeData appTheme() {
       hintColor: AppColors.hintColor,
       scaffoldBackgroundColor: Colors.white,
       fontFamily: AppStrings.fontFamily,
+      appBarTheme: const AppBarTheme(
+        centerTitle: true,
+        elevation: 0,
+        color: Colors.transparent,
+      ),
       textTheme: const TextTheme(
-          button: TextStyle(
-        fontSize: 16,
-        color: Colors.black,
-        fontWeight: FontWeight.bold,
-      )));
+          titleSmall: TextStyle(
+              height: 1.3,
+              fontSize: 22,
+              color: Colors.white,
+              fontWeight: FontWeight.bold),
+          bodyLarge: TextStyle(
+            fontSize: 20,
+            color: Colors.white,
+            fontWeight: FontWeight.w500,
+          )));
 }
