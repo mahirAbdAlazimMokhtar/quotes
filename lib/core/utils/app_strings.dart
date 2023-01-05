@@ -10,6 +10,9 @@ class AppStrings {
   static const serverFailure = 'Server Failure';
   static const cacheFailure = 'Cache Failure';
   static const unexpectedError = 'Unexpected Error';
+  static const errorPageOne = 'Something Went Wrong';
+  static const plzTryAgain = 'Please Try Again';
+  static const reloadScreen = 'Reload Screen';
 
   //'Content-Type': 'application/json'
 }
