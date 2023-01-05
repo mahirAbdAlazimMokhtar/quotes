@@ -7,6 +7,9 @@ class AppStrings {
   static const cacheRandomQuote = 'CACHED_RANDOM_QUOTE';
   static const contentType = 'Content-Type';
   static const applicationJson = 'application/json';
+  static const serverFailure = 'Server Failure';
+  static const cacheFailure = 'Cache Failure';
+  static const unexpectedError = 'Unexpected Error';
 
   //'Content-Type': 'application/json'
 }
