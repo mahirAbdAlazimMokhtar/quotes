@@ -11,18 +11,18 @@ class RandomQuoteInitial extends RandomQuoteState {}
 
 class RandomQuoteLoadingQuote extends RandomQuoteState {}
 
-class RandomQuoteLoadedQuote extends RandomQuoteState {
-  final Quote quoteModel;
+class RandomQuoteLoaded extends RandomQuoteState {
+  final Quote quote;
 
-  const RandomQuoteLoadedQuote({required this.quoteModel});
+  const RandomQuoteLoaded({required this.quote});
   @override
-  List<Object> get props => [quoteModel];
+  List<Object> get props => [quote];
 }
 
-class RandomQuoteErrorQuote extends RandomQuoteState {
+class RandomQuoteError extends RandomQuoteState {
   final String message;
 
-  const RandomQuoteErrorQuote({required this.message});
+  const RandomQuoteError({required this.message});
   @override
   List<Object> get props => [message];
 }
