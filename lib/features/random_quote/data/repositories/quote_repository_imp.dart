@@ -6,7 +6,8 @@ import '../../../../core/network/network_info.dart';
 import '../../domain/entities/quote.dart';
 import '../../domain/repositories/quote_repository.dart';
 import '../datasources/local_data/random_quote_local.dart';
-import '../datasources/remote_data/get_quote_remote.dart';
+import '../datasources/remote_data/random_remote_data.dart';
+
 
 class QuoteRepositoryImpl implements QuoteRepository {
   final NetworkInfo networkInfo;
