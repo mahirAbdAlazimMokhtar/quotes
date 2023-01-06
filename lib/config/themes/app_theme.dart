@@ -6,6 +6,8 @@ import '../../core/utils/app_strings.dart';
 ThemeData appTheme() {
   return ThemeData(
       primaryColor: AppColors.primaryColor,
+      
+
       hintColor: AppColors.hintColor,
       scaffoldBackgroundColor: Colors.white,
       fontFamily: AppStrings.fontFamily,

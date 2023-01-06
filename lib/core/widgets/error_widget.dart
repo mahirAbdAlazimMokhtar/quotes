@@ -5,9 +5,10 @@ import '../utils/app_strings.dart';
 import '../utils/media_query_values.dart';
 
 class CustomErrorWidget extends StatelessWidget {
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   const CustomErrorWidget(
-    this.onPressed, {
+     {
+    this.onPressed,
     super.key,
   });
 
@@ -51,7 +52,9 @@ class CustomErrorWidget extends StatelessWidget {
           width: context.width * 0.55,
           child: ElevatedButton(
             onPressed: () {
-              onPressed();
+              if (onPressed != null) {
+                onPressed!();
+              }
             },
             style: ElevatedButton.styleFrom(
                 foregroundColor: Theme.of(context).primaryColor,

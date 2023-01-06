@@ -3,8 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_strings.dart';
+import '../../../../core/widgets/error_widget.dart';
 import '../cubit/random_quote_cubit.dart';
-import '../widgets/loding_widget.dart';
+import '../widgets/loading_widget.dart';
 import '../widgets/quote_content.dart';
 
 class QuoteScreen extends StatefulWidget {
@@ -15,24 +16,14 @@ class QuoteScreen extends StatefulWidget {
 }
 
 class _QuoteScreenState extends State<QuoteScreen> {
-  _getRandomQuote() =>
-      BlocProvider.of<RandomQuoteCubit>(context).getRandomQuote();
   @override
   void initState() {
-    _getRandomQuote();
     super.initState();
+    _getRandomQuote();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: _buildAppBar(),
-      body: RefreshIndicator(
-        onRefresh: _getRandomQuote(),
-        child: _buildBodyContent(),
-      ),
-    );
-  }
+  _getRandomQuote() =>
+      BlocProvider.of<RandomQuoteCubit>(context).getRandomQuote();
 
   AppBar _buildAppBar() {
     return AppBar(
@@ -51,14 +42,18 @@ class _QuoteScreenState extends State<QuoteScreen> {
         if (state is RandomQuoteLoadingQuote) {
           return const LoadingWidget();
         } else if (state is RandomQuoteError) {
-          return const Text('Error');
+          return const CustomErrorWidget();
         } else if (state is RandomQuoteLoaded) {
           return Column(
+            //crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               QuoteContent(quote: state.quote),
               InkWell(
-                onTap: _getRandomQuote,
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () => _getRandomQuote(),
                 child: Container(
+                  width: double.infinity,
                   margin: const EdgeInsets.symmetric(
                     vertical: 20,
                   ),
@@ -80,6 +75,17 @@ class _QuoteScreenState extends State<QuoteScreen> {
           return const LoadingWidget();
         }
       },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: _buildAppBar(),
+      body: RefreshIndicator(
+        onRefresh: () => _getRandomQuote(),
+        child: _buildBodyContent(),
+      ),
     );
   }
 }

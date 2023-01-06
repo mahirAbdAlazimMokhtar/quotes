@@ -5,13 +5,12 @@ import '../../../../core/usecase/usecase.dart';
 import '../entities/quote.dart';
 import '../repositories/quote_repository.dart';
 
-class GetRandomQuote implements UseCase<Quote, NoParams> {
+class GetRandomQuoteUseCase implements UseCase<Quote, NoParams> {
   final QuoteRepository quoteRepository;
 
-  GetRandomQuote({required this.quoteRepository});
+  GetRandomQuoteUseCase({required this.quoteRepository});
   @override
-  Future<Either<Failure, Quote>> call(NoParams params)async {
-    return  quoteRepository.getRandomQuote();
+  Future<Either<Failure, Quote>> call(NoParams params) async {
+    return quoteRepository.getRandomQuote();
   }
-     
 }

@@ -12,7 +12,7 @@ import '../../domain/entities/quote.dart';
 part 'random_quote_state.dart';
 
 class RandomQuoteCubit extends Cubit<RandomQuoteState> {
-  final GetRandomQuote getRandomQuoteUseCase;
+  final GetRandomQuoteUseCase getRandomQuoteUseCase;
 
   RandomQuoteCubit({required this.getRandomQuoteUseCase})
       : super(RandomQuoteInitial());
