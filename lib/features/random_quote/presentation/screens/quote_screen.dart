@@ -16,14 +16,15 @@ class QuoteScreen extends StatefulWidget {
 }
 
 class _QuoteScreenState extends State<QuoteScreen> {
-  @override
+ 
+
+  _getRandomQuote() =>
+      BlocProvider.of<RandomQuoteCubit>(context).getRandomQuote();
+       @override
   void initState() {
     super.initState();
     _getRandomQuote();
   }
-
-  _getRandomQuote() =>
-      BlocProvider.of<RandomQuoteCubit>(context).getRandomQuote();
 
   AppBar _buildAppBar() {
     return AppBar(
@@ -42,7 +43,7 @@ class _QuoteScreenState extends State<QuoteScreen> {
         if (state is RandomQuoteLoadingQuote) {
           return const LoadingWidget();
         } else if (state is RandomQuoteError) {
-          return const CustomErrorWidget();
+          return  CustomErrorWidget(onPressed: () => _getRandomQuote(),);
         } else if (state is RandomQuoteLoaded) {
           return Column(
             //crossAxisAlignment: CrossAxisAlignment.center,

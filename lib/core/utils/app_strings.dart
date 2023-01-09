@@ -13,6 +13,9 @@ class AppStrings {
   static const errorPageOne = 'Something Went Wrong';
   static const plzTryAgain = 'Please Try Again';
   static const reloadScreen = 'Reload Screen';
+  static const englishCode = 'en';
+  static const arabicCode = 'ar';
+  static const locale = 'locale';
 
   //'Content-Type': 'application/json'
 }

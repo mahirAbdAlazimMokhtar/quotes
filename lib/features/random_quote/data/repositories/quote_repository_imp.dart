@@ -22,13 +22,15 @@ class QuoteRepositoryImpl implements QuoteRepository {
   @override
   Future<Either<Failure, Quote>> getRandomQuote() async {
     if (await networkInfo.isConnected) {
-      try {
-        final remoteRandomQuote = await remoteDataSource.getRandomQuote();
-        localDataSource.cacheQuote(remoteRandomQuote);
-        return Right(remoteRandomQuote);
-      } on ServerException {
-        return Left(ServerFailure());
-      }
+     try {
+      final remoteRandomQuote =
+          await remoteDataSource.getRandomQuote();
+      localDataSource.cacheQuote(remoteRandomQuote);
+      return Right(remoteRandomQuote);
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+      
     } else {
       try {
         final cacheRandomQuote = await localDataSource.gtLastRandomQuote();

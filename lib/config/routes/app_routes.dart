@@ -16,14 +16,14 @@ class Routes {
 class AppRoutes {
   static Route? onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
-      case Routes.initialRoutes:
+      case Routes.randomQuoteRoute:
         return MaterialPageRoute(builder: ((context) {
           return BlocProvider(
             create: ((context) => di.sl<RandomQuoteCubit>()),
             child: const QuoteScreen(),
           );
         }));
-      case Routes.randomQuoteRoute:
+      case Routes.initialRoutes:
         return MaterialPageRoute(builder: ((context) {
           return const SplashScreen();
         }));
