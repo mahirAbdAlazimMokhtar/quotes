@@ -13,6 +13,12 @@ import 'features/random_quote/data/repositories/quote_repository_imp.dart';
 import 'features/random_quote/domain/repositories/quote_repository.dart';
 import 'features/random_quote/domain/usecases/get_random_quote.dart';
 import 'features/random_quote/presentation/cubit/random_quote_cubit.dart';
+import 'features/splash/data/datasources/lang_local_data.dart';
+import 'features/splash/data/repositories/lang_repository_impl.dart';
+import 'features/splash/domain/repositories/lang_repository.dart';
+import 'features/splash/domain/usecases/change_locale.dart';
+import 'features/splash/domain/usecases/get_saved_lang.dart';
+import 'features/splash/presentation/cubit/locale_cubit.dart';
 
 final sl = GetIt.instance;
 
@@ -20,19 +26,29 @@ Future init() async {
   //! Features
   // Blocs
 
-  sl.registerFactory(() => RandomQuoteCubit(getRandomQuoteUseCase: sl()));
+  sl.registerFactory<RandomQuoteCubit>(
+      () => RandomQuoteCubit(getRandomQuoteUseCase: sl()));
+  sl.registerFactory<LocaleCubit>(() =>
+      LocaleCubit(getChangeLocaleUseCase: sl(), getSavedLangUseCase: sl()));
   //use cases
   sl.registerLazySingleton(() => GetRandomQuoteUseCase(quoteRepository: sl()));
+  sl.registerLazySingleton(() => GetChangeLocaleUseCase(langRepository: sl()));
+  sl.registerLazySingleton(() => GetSavedLangUseCase(langRepository: sl()));
   //Repository
   sl.registerLazySingleton<QuoteRepository>(() => QuoteRepositoryImpl(
         localDataSource: sl(),
         networkInfo: sl(),
         remoteDataSource: sl(),
+      )); 
+      sl.registerLazySingleton<LangRepository>(() => LangRepositoryImp(
+      langLocalDataSource: sl()
       ));
   //Data Source
 
   sl.registerLazySingleton<RandomQuoteLocalDataSource>(
       () => RandomQuoteLocalDataSourceImpl(sharedPreferences: sl()));
+      sl.registerLazySingleton<LangLocalDataSource>(
+      () => LangLocalDataSourceImpl(sharedPreferences: sl()));
   sl.registerLazySingleton<RandomQuoteRemoteDataSource>(
       () => RandomQuoteRemoteDataSourceImpl(
             apiConsumer: sl(),

@@ -22,7 +22,7 @@ class LangRepositoryImp implements LangRepository {
   Future<Either<Failure, String>> getSavedLang() async {
     try {
       final langCode = await langLocalDataSource.getSaveLang();
-      return Right(langCode!);
+      return Right(langCode);
     } on CacheException {
       return Left(CacheFailure());
     }

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../config/locale/app_localizations.dart';
 import '../../../../core/utils/app_colors.dart';
-import '../../../../core/utils/app_strings.dart';
 import '../../../../core/widgets/error_widget.dart';
+import '../../../splash/presentation/cubit/locale_cubit.dart';
 import '../cubit/random_quote_cubit.dart';
 import '../widgets/loading_widget.dart';
 import '../widgets/quote_content.dart';
@@ -16,11 +17,9 @@ class QuoteScreen extends StatefulWidget {
 }
 
 class _QuoteScreenState extends State<QuoteScreen> {
- 
-
   _getRandomQuote() =>
       BlocProvider.of<RandomQuoteCubit>(context).getRandomQuote();
-       @override
+  @override
   void initState() {
     super.initState();
     _getRandomQuote();
@@ -28,11 +27,24 @@ class _QuoteScreenState extends State<QuoteScreen> {
 
   AppBar _buildAppBar() {
     return AppBar(
-      title: const Text(
-        AppStrings.appName,
-        style: TextStyle(
+      title: Text(
+        AppLocalizations.of(context)!.translate('app_name')!,
+        style: const TextStyle(
           color: Colors.black,
         ),
+      ),
+      leading: IconButton(
+        icon: Icon(
+          Icons.translate_outlined,
+          color: AppColors.primaryColor,
+        ),
+        onPressed: () {
+          if (AppLocalizations.of(context)!.isEnLocale) {
+            BlocProvider.of<LocaleCubit>(context).toArabic();
+          } else {
+            BlocProvider.of<LocaleCubit>(context).toEnglish();
+          }
+        },
       ),
     );
   }
@@ -43,7 +55,9 @@ class _QuoteScreenState extends State<QuoteScreen> {
         if (state is RandomQuoteLoadingQuote) {
           return const LoadingWidget();
         } else if (state is RandomQuoteError) {
-          return  CustomErrorWidget(onPressed: () => _getRandomQuote(),);
+          return CustomErrorWidget(
+            onPressed: () => _getRandomQuote(),
+          );
         } else if (state is RandomQuoteLoaded) {
           return Column(
             //crossAxisAlignment: CrossAxisAlignment.center,

@@ -32,8 +32,8 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    # - lang/ar.json
-    # - lang/en.json
+    - lang/ar.json
+    - lang/en.json
     - assets/images/quote.png
   fonts:
     - family: Tajawal
